@@ -12,7 +12,7 @@ createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route path="/" element={<Home />}>
 
-          <Route path="/mis_eventos" element={<ListEvents />} />
+          <Route index element={<ListEvents />} />
 
           <Route path="/crear_evento" element={<CreateEvent />} />
 

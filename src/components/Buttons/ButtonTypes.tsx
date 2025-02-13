@@ -1,4 +1,4 @@
-export type Button = {
+export interface Button {
     text: string,
     disabled?: boolean,
     isLoading?: boolean
@@ -6,9 +6,9 @@ export type Button = {
     isActive?: boolean,
 }
 
-type redirectButton = {
+interface redirectButton {
     redirectTo: string
 }
 
-export type HeaderButtonTypes = Button & redirectButton
+export interface HeaderButtonTypes extends Button, redirectButton { }
 

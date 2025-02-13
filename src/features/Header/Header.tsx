@@ -10,15 +10,13 @@ const Header = () => {
                 <HeaderButton
                     text={"Mis Eventos"}
                     onClick={() => console.log("Click")}
-                    redirectTo="/mis_eventos"
+                    redirectTo="/"
                 />
-
                 <HeaderButton
                     text={"Crear Evento"}
                     onClick={() => console.log("Click")}
                     redirectTo="/crear_evento"
                 />
-
             </nav>
 
 
