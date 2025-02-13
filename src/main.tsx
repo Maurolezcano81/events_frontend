@@ -1,10 +1,23 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { Routes, Route, BrowserRouter as Router } from 'react-router-dom'
 import './index.css'
-import App from './App.tsx'
+import Home from './features/Home/Home.tsx'
+import ListEvents from './features/ListEvents/ListEvents.tsx'
+import CreateEvent from './features/CreateEvent/CreateEvent.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
-  </StrictMode>,
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />}>
+
+          <Route path="/mis_eventos" element={<ListEvents />} />
+
+          <Route path="/crear_evento" element={<CreateEvent />} />
+
+        </Route>
+      </Routes>
+    </Router>
+  </StrictMode>
 )

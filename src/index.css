@@ -13,3 +13,7 @@
 @theme{
   --font-satoshi: "Satoshi", "sans-serif";
 }
+
+*{
+  font-family: Satoshi;
+}

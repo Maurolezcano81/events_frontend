@@ -2,7 +2,7 @@ function App() {
 
   return (
     <>
-      <h1 className="font-satoshi">hola</h1>
+      <h1 className="">hola</h1>
     </>
   )
 }
