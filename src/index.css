@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import 'primereact/resources/themes/lara-light-blue/theme.css' layer(primereact);
 
 @font-face {
   font-family: Satoshi;
@@ -17,3 +18,4 @@
 *{
   font-family: Satoshi;
 }
+

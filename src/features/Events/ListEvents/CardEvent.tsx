@@ -8,7 +8,6 @@ const CardEvent: React.FC<CardEventProps> = ({
     event
 }) => {
 
-    console.log(event)
     return (
         <ol
             key={event.id}
@@ -32,8 +31,13 @@ const CardEvent: React.FC<CardEventProps> = ({
 
             </div>
 
+
             <p
                 className="h-10 overflow-hidden font-semibold"
+            >{event.nombre}</p>
+            
+            <p
+                className="h-10 overflow-hidden"
             >{event.descripcion}</p>
 
             <div>

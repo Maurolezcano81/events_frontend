@@ -5,19 +5,28 @@ import './index.css'
 import Home from './features/Home/Home.tsx'
 import ListEvents from './features/Events/ListEvents/ListEvents.tsx'
 import CreateEvent from './features/Events/CreateEvent/CreateEvent.tsx'
+import { PrimeReactProvider} from 'primereact/api';
+import "primereact/resources/themes/tailwind-light/theme.css";
+import Tailwind from 'primereact/passthrough/tailwind';
+
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />}>
+    <PrimeReactProvider value={{
+      unstyled:true, 
+      pt: Tailwind 
+    }}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />}>
 
-          <Route index element={<ListEvents />} />
+            <Route index element={<ListEvents />} />
 
-          <Route path="/crear_evento" element={<CreateEvent />} />
+            <Route path="/crear_evento" element={<CreateEvent />} />
 
-        </Route>
-      </Routes>
-    </Router>
+          </Route>
+        </Routes>
+      </Router>
+    </PrimeReactProvider>
   </StrictMode>
 )

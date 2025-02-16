@@ -19,6 +19,7 @@ interface Ticket {
 
 export interface Event {
     id: number,
+    nombre: string,
     descripcion: string,
     lugar: string,
     fecha_y_hora: Date,
