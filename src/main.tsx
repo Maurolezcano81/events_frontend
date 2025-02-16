@@ -3,8 +3,8 @@ import { createRoot } from 'react-dom/client'
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom'
 import './index.css'
 import Home from './features/Home/Home.tsx'
-import ListEvents from './features/ListEvents/ListEvents.tsx'
-import CreateEvent from './features/CreateEvent/CreateEvent.tsx'
+import ListEvents from './features/Events/ListEvents/ListEvents.tsx'
+import CreateEvent from './features/Events/CreateEvent/CreateEvent.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

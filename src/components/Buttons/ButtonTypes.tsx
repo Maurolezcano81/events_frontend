@@ -2,7 +2,7 @@ export interface Button {
     text: string,
     disabled?: boolean,
     isLoading?: boolean
-    onClick: VoidFunction,
+    onClick?: VoidFunction,
     isActive?: boolean,
 }
 

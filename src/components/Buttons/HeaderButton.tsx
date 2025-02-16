@@ -14,7 +14,6 @@ const HeaderButton: React.FC<HeaderButtonTypes> = ({
 
     useEffect(() => {
         const path = location.pathname;
-
         if (path === redirectTo) {
             setActiveRoute(true);
         } else {
@@ -28,7 +27,7 @@ const HeaderButton: React.FC<HeaderButtonTypes> = ({
 
     return (
         <button
-            className={`font-semibold p-8 hover:cursor-pointer ${activeRoute ? "text-gray-50 bg-zinc-700" : "hover:bg-zinc-400 hover:text-gray-50 text-gray-400"} grow-1 text-center md:grow-0`}
+            className={`font-semibold transition-colors duration-200 p-8 hover:cursor-pointer ${activeRoute ? "text-gray-50 bg-zinc-700" : "hover:bg-zinc-400 hover:text-gray-50 text-gray-400"} grow-1 text-center md:grow-0`}
             onClick={() => handleRedirect(redirectTo)}
         >
             {text}
