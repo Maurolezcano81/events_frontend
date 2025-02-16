@@ -8,6 +8,7 @@ import CreateEvent from './features/Events/CreateEvent/CreateEvent.tsx'
 import { PrimeReactProvider} from 'primereact/api';
 import "primereact/resources/themes/tailwind-light/theme.css";
 import Tailwind from 'primereact/passthrough/tailwind';
+import SingleEvent from './features/Events/SingleEvent/SingleEvent.tsx'
 
 
 createRoot(document.getElementById('root')!).render(
@@ -24,6 +25,7 @@ createRoot(document.getElementById('root')!).render(
 
             <Route path="/crear_evento" element={<CreateEvent />} />
 
+            <Route path='/evento/:id' element={<SingleEvent />} />
           </Route>
         </Routes>
       </Router>

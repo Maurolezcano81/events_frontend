@@ -4,6 +4,7 @@ import { EventsService } from "./Events.service";
 
 export function useEvents() {
 
+    const [event, setEvent] = useState<Event>({})
     const [events, setEvents] = useState<Event[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
@@ -25,6 +26,18 @@ export function useEvents() {
         fetchEvents()
     }, [])
 
+    async function fetchEvent(id: number) {
+        setLoading(true);
+        setError(null);
+        try {
+            const data = await EventsService.getEventById(id);
+            setEvent(data)
+        } catch (error) {
+            setError((error as Error).message)
+        } finally {
+            setLoading(false)
+        }
+    }
 
-    return { events, loading, error };
+    return { event, events, loading, error, fetchEvent };
 }

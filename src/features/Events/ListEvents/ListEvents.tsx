@@ -14,6 +14,7 @@ const ListEvents = () => {
             {
                 events && events.length > 0 && events.map((event) => (
                     <Card
+                        key={event.id}
                         event={event}
                     />
                 ))
