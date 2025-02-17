@@ -2,7 +2,7 @@ import { Ticket } from "lucide-react";
 import { InputText } from "primereact/inputtext";
 import React from "react";
 
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LoginForm, loginSchema } from "./auth.schemas";
 import { Password } from "primereact/password";
@@ -15,6 +15,7 @@ const LoginPage: React.FC = () => {
         handleSubmit,
         watch,
         formState: { errors },
+        control
     } = useForm<LoginForm>({
         resolver: zodResolver(loginSchema),
         mode: "all"
@@ -82,29 +83,27 @@ const LoginPage: React.FC = () => {
                         <label htmlFor="password">
                             Contraseña
                         </label>
-                        <Password
-                            placeholder="Ingrese su clave"
-                            {...register('password')}
-                            pt={{
-                                iconField: {
-                                    root: {
-                                        style: { width: "100%" },
-                                    },
-                                },
-                                input: {
-                                    style: { width: "100%" },
-                                },
-                                root: {
-                                    style: { width: "100%" },
-                                },
-                            }}
-                            invalid={!!errors.password}
-                            toggleMask
-                            feedback={false}
-                            id="password"
+                        <Controller
+                            name="password"
+                            control={control}  // 'control' proviene de 'useForm'
+                            render={({ field }) => (
+                                <Password
+                                    {...field}
+                                    placeholder="Ingrese su clave"
+                                    toggleMask
+                                    pt={{
+                                        iconField: {
+                                            root: { style: { width: "100%" } },
+                                        },
+                                        input: { style: { width: "100%" } },
+                                        root: { style: { width: "100%" } },
+                                    }}
+                                    invalid={!!errors.password}
+                                />
+                            )}
                         />
-                        <small className={errors.password ? "text-red-600" : ""}>{errors.password ? errors.password.message : "Ingrese su contraseña."}
-
+                        <small className={errors.password ? "text-red-600" : ""}>
+                            {errors.password ? errors.password.message : "Ingrese su contraseña."}
                         </small>
 
                     </div>
@@ -114,7 +113,7 @@ const LoginPage: React.FC = () => {
                 <div className="flex justify-end">
                     <Button
                         className="w-fit"
-                        
+
                         type="submit"
                         label="Iniciar"
                         raised
