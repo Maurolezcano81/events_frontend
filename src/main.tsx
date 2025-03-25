@@ -11,31 +11,40 @@ import Tailwind from 'primereact/passthrough/tailwind';
 import SingleEvent from './features/Events/SingleEvent/SingleEvent.tsx'
 import LoginPage from './features/Auth/LoginPage.tsx'
 import RegisterPage from './features/Auth/RegisterPage.tsx'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import ProtectedRoutes from './routes/ProtectedRoutes.tsx'
 
+const queryClient = new QueryClient({});
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <PrimeReactProvider value={{
-      unstyled: true,
-      pt: Tailwind
-    }}>
-      <Router>
-        <Routes>
+    <QueryClientProvider client={queryClient}>
+      <PrimeReactProvider value={{
+        unstyled: true,
+        pt: Tailwind
+      }}>
+        <Router>
+          <Routes>
 
-          <Route path="/iniciar-sesion" element={<LoginPage />} />
+            <Route path="/iniciar-sesion" element={<LoginPage />} />
 
-          <Route path='/registrarse' element={<RegisterPage />} />
+            <Route path='/registrarse' element={<RegisterPage />} />
 
-          <Route path="/" element={<Home />}>
 
-            <Route index element={<ListEvents />} />
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/" element={<Home />}>
 
-            <Route path="/crear_evento" element={<CreateEvent />} />
+                <Route index element={<ListEvents />} />
 
-            <Route path='/evento/:id' element={<SingleEvent />} />
-          </Route>
-        </Routes>
-      </Router>
-    </PrimeReactProvider>
+                <Route path="/crear_evento" element={<CreateEvent />} />
+
+                <Route path='/evento/:id' element={<SingleEvent />} />
+              </Route>
+            </Route>
+
+          </Routes>
+        </Router>
+      </PrimeReactProvider>
+    </QueryClientProvider>
   </StrictMode>
 )

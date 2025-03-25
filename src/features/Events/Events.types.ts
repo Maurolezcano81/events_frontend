@@ -1,13 +1,5 @@
+import { Ticket } from "../../TypesGlobals/Ticket.type";
 import { User } from "../../TypesGlobals/User.type";
-
-
-interface Ticket {
-    id: number,
-    fondo_color: string,
-    letras_color: string,
-    created_at: Date,
-    updated_at: Date
-}
 
 export interface Event {
     id: number,
@@ -20,7 +12,9 @@ export interface Event {
     usuario_fk: User,
     ticket_fk: Ticket,
     created_at: Date,
-    updated_at: Date
+    updated_at: Date,
+    invitados?: [],
+    user?: User
 }
 
 export interface CardEventProps {

@@ -4,7 +4,7 @@ import { EventsService } from "./Events.service";
 
 export function useEvents() {
 
-    const [event, setEvent] = useState<Event>({})
+    const [event, setEvent] = useState<Event>()
     const [events, setEvents] = useState<Event[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);

@@ -7,7 +7,7 @@ const Home = () => {
         <div className="bg-gray-200 min-h-[100vh] flex flex-col items-center"
         >
 
-            <div className="w-full md:my-14 md:w-[80%] lg:w-1/2">
+            <div className="w-full md:my-14 md:w-[80%] lg:w-2/3">
                 <Header />
 
                 <main

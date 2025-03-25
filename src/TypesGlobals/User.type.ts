@@ -4,11 +4,12 @@ export interface User {
     nombre: string,
     apellido: string,
     email: string,
-    password: string,
+    contrasena: string,
     nombre_usuario: string,
-    created_at: Date,
-    updated_at: Date
+    created_at: string,
+    updated_at: string,
 }
 
 
-export type Login = Pick<User, 'email' | 'password'>
+export type Login = Pick<User, 'email' | 'contrasena'>
+export type Register = Pick<User, "nombre" | "apellido" | "email" | "contrasena" | "nombre_usuario">

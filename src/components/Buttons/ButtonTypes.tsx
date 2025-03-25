@@ -14,4 +14,3 @@ interface redirectButton {
 }
 
 export interface HeaderButtonTypes extends Button, redirectButton { }
-

@@ -37,7 +37,7 @@ const CardEvent: React.FC<CardEventProps> = ({
             >{event.nombre}</p>
             
             <p
-                className="h-10 overflow-hidden"
+                className="h-[5ch] overflow-hidden"
             >{event.descripcion}</p>
 
             <div>
