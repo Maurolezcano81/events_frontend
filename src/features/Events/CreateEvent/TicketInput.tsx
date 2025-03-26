@@ -10,29 +10,29 @@ import { Ticket } from "../../../TypesGlobals/Ticket.type"
 import MinimalistTheme from "../../../components/Ticket/MinimalistThe"
 import ModernTheme from "../../../components/Ticket/ModernTheme"
 
+
+const type_invitations: Ticket[] = [
+    {
+        name: "Elegante",
+        children: <ElegantTheme />
+    },
+    {
+        name: "Festivo",
+        children: <FestiveTheme />
+    },
+    {
+        name: "Minimalista",
+        children: <MinimalistTheme />
+    },
+    {
+        name: "Moderno",
+        children: <ModernTheme />
+    }
+]
+
 const TicketInput: React.FC = () => {
 
-
     const { control, watch, register, formState: { errors } } = useFormContext<EventCreateType>();
-
-    const type_invitations: Ticket[] = [
-        {
-            name: "Elegante",
-            children: <ElegantTheme />
-        },
-        {
-            name: "Festivo",
-            children: <FestiveTheme />
-        },
-        {
-            name: "Minimalista",
-            children: <MinimalistTheme />
-        },
-        {
-            name: "Moderno",
-            children: <ModernTheme />
-        }
-    ]
 
     const selectedTicketName = watch("ticket_fk");
 

@@ -8,9 +8,6 @@ const RightSide: React.FC = () => {
         >
             <div className="flex flex-col justify-end w-full gap-4">
 
-
-
-
                 <TicketInput
                 />
 

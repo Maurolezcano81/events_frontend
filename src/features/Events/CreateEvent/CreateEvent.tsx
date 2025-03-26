@@ -5,11 +5,18 @@ import LeftSide from "./LeftSide";
 import RightSide from "./RightSide";
 import ElegantTheme from "../../../components/Ticket/ElegantTheme";
 import React from 'react';
+import { Button } from "primereact/button";
+import { useAuthStore } from "../../../stores/AuthStore";
+import { useCreateEvent } from "../useEvents";
+import ErrorMessagesFroms from "../../../components/ErrorMessages/ErrorMessagesForms";
+import { yearToDayAndHourToSecond } from "../../../utils/DateFormatter";
 
 const CreateEvent = () => {
 
     const clonedChildren = React.cloneElement(<ElegantTheme />, { textColor: "#c9a55c" });
+    const user = useAuthStore((state) => state.user);
 
+    const { mutate: CreateEventHook, onSuccess, isPending, isError, error } = useCreateEvent()
 
     const methods = useForm({
         resolver: zodResolver(EventCreateSchema),
@@ -19,21 +26,35 @@ const CreateEvent = () => {
             texto_color: "#c9a55c",
             nombre: "Nombre del Evento",
             descripcion: "Una celebración especial",
+            privacidad_evento: "Publico",
             lugar: "Lugar del Evento",
             fecha_y_hora: new Date(),
             ticket_fk: {
                 name: "Elegante",
                 children: clonedChildren
             },
-            host_fk: "Anfitrión",
+            anfitrion: "Anfitrión",
         }
     })
 
-
-
     const onSubmit = (data: EventCreateType) => {
-        console.log(data);
+
+        const { ticket_fk, ...rest } = data;
+
+        const newData = {
+            ...rest,
+            tipo_invitacion: ticket_fk.name,
+            usuario_fk: user?.id,
+            estado_evento: "alta",
+            fecha_y_hora: yearToDayAndHourToSecond(data.fecha_y_hora),
+            ticket_fk: { name: ticket_fk.name }
+        }
+
+        console.log(newData);
+
+        CreateEventHook(newData)
     }
+
 
     return (
         <FormProvider {...methods}>
@@ -67,8 +88,26 @@ const CreateEvent = () => {
 
                 </div>
 
+                {isError && error && (
+                    <div className="p-2 my-6 text-white bg-red-400 rounded-md">
+                        <p>{error.message}</p>
+                        <ErrorMessagesFroms
+                            errors={error.errors!}
+                        />
+                    </div>
+                )}
 
+                <div className="w-full text-right">
+                    <Button
+                        type="submit"
+                        className="flex items-center justify-center w-full gap-4 border-none md:w-fit bg-neutral-700"
+                        loading={isPending}
+                        disabled={Object.keys(methods.formState.errors).length > 0}
+                    >
+                        Crear Evento
+                    </Button>
 
+                </div>
 
             </form>
         </FormProvider>

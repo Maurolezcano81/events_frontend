@@ -21,11 +21,6 @@ const EventCreateSchema = z.object({
     privacidad_evento: z
         .string({ invalid_type_error: "Tipo de dato no valido.", required_error: "Este campo no puede estar vacío" })
         .min(1, "El titulo no debe estar vacío"),
-    estado_evento: z
-        .boolean({ invalid_type_error: "Tipo de dato no valido.", required_error: "Este campo no puede estar vacío" }),
-    usuario_fk: z
-        .number({ invalid_type_error: "Tipo de dato no valido.", required_error: "Este campo no puede estar vacío" })
-        .min(1, "Primero debe iniciar sesión"),
     texto_color: z
         .string({ invalid_type_error: "Tipo de dato no valido.", required_error: "Este campo no puede estar vacío" })
         .min(1, "El titulo no debe estar vacío"),
@@ -33,7 +28,7 @@ const EventCreateSchema = z.object({
         .string({ invalid_type_error: "Tipo de dato no valido.", required_error: "Este campo no puede estar vacío" })
         .min(1, "El titulo no debe estar vacío"),
     ticket_fk: TicketSchema,
-    host_fk: z
+    anfitrion: z
         .string({ invalid_type_error: "Tipo de dato no valido.", required_error: "Este campo no puede estar vacío" })
         .min(1, "El titulo no debe estar vacío"),
 })

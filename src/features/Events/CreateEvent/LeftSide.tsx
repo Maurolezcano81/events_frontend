@@ -11,7 +11,7 @@ import { Nullable } from "primereact/ts-helpers";
 
 const LeftSide: React.FC = () => {
 
-    const { register, formState: { errors } } = useFormContext<EventCreateType>();
+    const { register, setValue, formState: { errors } } = useFormContext<EventCreateType>();
 
     const [selectedPrivacity, setSelectedPrivacity] = useState<string | null>(null)
     const [selectedDate, setSelectedDate] = useState<Nullable<Date>>(null)
@@ -33,12 +33,12 @@ const LeftSide: React.FC = () => {
                             button: { className: "w-[100%]" },
                             label: { className: "w-[100%]" }
                         }}
-                        invalid={!!errors.privacidad_evento?.message}
-                        {...register('privacidad_evento')}
                         options={optionsPrivacity}
                         value={selectedPrivacity}
-                        defaultValue={optionsPrivacity[0]}
-                        onChange={(e) => setSelectedPrivacity(e.value)}
+                        onChange={(e) => {
+                            setSelectedPrivacity(e.value);
+                            setValue("privacidad_evento", e.value);
+                        }}
                     />
 
                 </div>
@@ -109,7 +109,6 @@ const LeftSide: React.FC = () => {
                                 className: "w-full"
                             }
                         }}
-
                         {...register('fecha_y_hora')}
                         value={selectedDate}
                         placeholder="Seleccione una fecha"
@@ -157,15 +156,15 @@ const LeftSide: React.FC = () => {
                     <InputText
                         className="w-full my-2"
                         placeholder="Nombre del anfitrion"
-                        invalid={!!errors.host_fk?.message}
-                        {...register('host_fk')}
+                        invalid={!!errors.anfitrion?.message}
+                        {...register('anfitrion')}
                     />
 
                 </div>
 
-                {errors && errors.host_fk && (
+                {errors && errors.anfitrion && (
                     <ErrorTextLabel
-                        message={errors.host_fk.message!}
+                        message={errors.anfitrion.message!}
                     />
                 )}
 

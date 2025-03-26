@@ -10,8 +10,8 @@ const ListEvents = () => {
     const { events, loading, error } = useEvents();
     const { user } = useAuthStore();
 
+    console.log(events)
     const Card = lazy(() => import('./CardEvent'));
-    console.log(user);
 
     return (
         <Suspense fallback={<Spinner />}>
@@ -31,7 +31,7 @@ const ListEvents = () => {
                                 <p className="pl-6 text-lg font-bold">Hola, {user?.nombre} 👋 </p>
                                 <Divider />
 
-                                {events && events.length > 0 && events.map((event) => (
+                                {events && events.usuario.eventos.length > 0 && events.usuario.eventos.map((event) => (
                                     <Card
                                         key={event.id}
                                         event={event}

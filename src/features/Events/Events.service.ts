@@ -7,8 +7,8 @@ const token = "asd"
 
 export const EventsService = {
 
-    async getEvents(): Promise<Event[]> {
-        const response = await fetch(endpointsUrls.getEvents, {
+    async getEvents(id: number): Promise<Event[]> {
+        const response = await fetch(`${endpointsUrls.getEvents}/${id}/mis-eventos`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -28,6 +28,27 @@ export const EventsService = {
         })
 
         return response.json()
+    },
+
+    async createEvent(data: Event) {
+
+        const response = await fetch(`${endpointsUrls.createEvent}`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(data)
+        })
+
+
+        if (!response.ok) {
+            const errorMessage = await response.json() || "Error al crear el evento, intentelo reiniciando el sitio."
+
+            throw errorMessage;
+        }
+
+        return await response.json();;
     }
 
 }
